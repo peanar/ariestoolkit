@@ -9,12 +9,18 @@ UNDER BETA TESTING!!!!!
 --------------------------------------------------
 Features:
  # 1-Install Custom Rom And Recovery
+ 
  # 2-Unbrick Phone
+ 
  # 3-Sync Music and Photos
+ 
  # 4-More Feature Will Added
--------------------------------------------------
+ 
+ 
 
 What Do you Need?
+-------------------------------------------------
+
  #1-Linux Or Unix Pc (mac too)
  #2-Adb and Fastboot (A Linux Installer will added)
  #3-a Usb Cable
