@@ -15,7 +15,13 @@ Features:
  
  # 3-Sync Music and Photos
  
- # 4-More Feature Will Added
+ # 4-Backup And Restore
+ 
+ # 5-Unistall Apps
+ 
+ # 6-Edit Partitions
+ 
+ # 7-Shell Commands
  
  
 
@@ -24,7 +30,7 @@ What Do you Need?
 
  #1-Linux Or Unix or Windows
  
- #2-Adb and Fastboot 
+ #2-Adb and Fastboot (only on unix/linux)
  
  #3-a Usb Cable
  
