@@ -25,7 +25,6 @@
 
 inst () {
 printHeader
-echo "-> Aries Installer"
 echo " "
 echo " "
 echo "Choose What Do You want to Install:"
@@ -33,7 +32,7 @@ echo " "
 echo " "
 echo "1- Custom Rom"
 echo "2- ClockWorkMod Recovery"
-echo "3- Install/Update Gapps"
+echo "3- Install/Update Gapps or Mod"
 echo " "
 echo " "
 echo "x- Go Back"
@@ -51,16 +50,13 @@ elif [ "$Choice" = "3" ]
   then
     gapps
     break
-elif [ "$Choice" = "00" ]
-  then
-    unb
-    break
 elif [ "$Choice" = "x" ]
   then
     startselect
     break
 else
 echo "Wrong input"
+inst
 fi
 }
 
@@ -68,7 +64,6 @@ fi
 
 rms () {
 printHeader
-echo "---> Rom Selector"
 echo " "
 echo " "
 echo "Chose which rom do you want to install"
@@ -94,6 +89,7 @@ elif [ "$Choice" = "x" ]
     break
 else
 echo "Wrong input"
+rms
 fi
 }
 
@@ -101,23 +97,21 @@ fi
 
 cmi () {
 printHeader
-echo "----> Cyanogenmod Installer"
+echo "Cyanogenmod Installer"
 echo " "
+echo " "
+echo "Thanks to M1cha for this rom"
 echo " "
 read -p "Press enter to start!" cont
 echo "Let the phone reboot, and say goodbye to Miui!"
-echo "waiting Your Phone"
-echo "Done! Starting System..."
 sudo adb reboot recovery
 echo "The  Phone Will Be Rebooted on Recovery Mode"
 echo " "
 echo "REMEMBER: Use VOl + Key and Vol - Key to select, POWER Button to Confirm"
-read -p "Press enter to continue..." cont
-read -p " "
-echo "Select: install zip from sideload, select system 1 and"
-echo "DON'T TOUCH OR REBOOT OR SHUTDOWN OR UNPLUG YOUR DEVICE!!!! THIS WILL TAKE SOME MINUTES!!!!!!!"
+echo "Select: install zip from sideload, select system 1"
 read -p "ONLY whan You're ready, press enter to continue..." cont
 sudo adb sideload ~/ariesTool/rom/cm.zip
+echo "DON'T TOUCH OR REBOOT OR SHUTDOWN OR UNPLUG YOUR DEVICE!!!! THIS WILL TAKE SOME MINUTES!!!!!!!"
 echo "When the recovery will give some Options Like Reboot System Now, Install zip .... and type"
 read -p "ok"
 read -p "?" Choice
@@ -127,6 +121,7 @@ if [ "$Choice" = "ok" ]
     break
 else
 echo "Wrong input"
+finish
 fi
 }
 
@@ -134,7 +129,7 @@ fi
 
 crs () {
 printHeader
-echo "----> Custom Rom Installer"
+echo "Custom Rom Installer"
 echo " "
 echo " "
 echo "FOLLLOW THIS GUIDE CAREFULLY"
@@ -151,16 +146,14 @@ sudo mv ~/ariesTool/rom/custom/*.zip ~/ariesTool/rom/custom/rom.zip
 read -p "Press enter to start!" cont
 echo "Let the phone reboot, and say goodbye to Miui!"
 echo "waiting Your Phone"
-echo "Done! Starting System..."
 sudo adb reboot recovery
 echo "The  Phone Will Be Rebooted on Recovery Mode"
 echo " "
 echo "REMEMBER: Use VOl + Key and Vol - Key to select, POWER Button to Confirm"
 read -p "Press enter to continue..." cont
-read -p " "
 read -p "Select: install zip from sideload, select system 1 and Press ENTER ONLY WHEN YOU'RE READY"
-echo "DON'T TOUCH OR REBOOT OR SHUTDOWN OR UNPLUG YOUR DEVICE!!!! THIS WILL TAKE SOME MINUTES!!!!!!!"
 sudo adb sideload ~/ariesTool/rom/custom/rom.zip
+echo "DON'T TOUCH OR REBOOT OR SHUTDOWN OR UNPLUG YOUR DEVICE!!!! THIS WILL TAKE SOME MINUTES!!!!!!!"
 echo "When the recovery will give some Options Like Reboot System Now, Install zip .... and type"
 echo "ok"
 read -p "?" Choice
@@ -170,6 +163,7 @@ if [ "$Choice" = "ok" ]
     break
 else
 echo "Wrong input"
+finsh
 fi
 }
 
@@ -177,7 +171,7 @@ fi
 
 cwm () {
 printHeader
-echo "----> ClockWorkMod Installer"
+echo "ClockWorkMod Installer"
 echo " "
 echo " "
 sudo adb reboot bootloader
@@ -323,7 +317,7 @@ echo " "
 echo " "
 echo " "
 echo "Shutdown Your Phone if it's not power off yet"
-echo " "
+echo "Press vol + and Power button, it will boot into bootloader "
 echo " "
 echo " "
 echo "Ok, Now let's unbrick phone..."
@@ -404,13 +398,7 @@ conr () {
 printHeader
 echo "Phone Setup"
 echo " "
-echo " "
-echo "Downloading AriesToolkit on your phone...."
-echo "if you get any error above, copy the file called file.apk wich is ini your home directory on your phone and install it"
-echo "Open Aries Toolkit Setup App and Follows the instructions"
-read -p "After thet press Enter"
-sudo adb reboot recovery
-echo "Rebooting recovery"
+adb reboot recovery
 echo " "
 echo "REMEMBER: Use VOl + Key and Vol - Key to select, POWER Button to Confirm"
 echo " "
@@ -429,7 +417,7 @@ echo "Select reboot system"
 echo " "
 echo "Now Your Phone is factory reset..."
 echo " "
-read -p "Press enter to reboot into system ONLY you've done all!!"
+read -p "Press enter to reboot into system ONLY when you've done all!!"
 read -p " "
 sudo adb reboot
 echo "GO TO settings>developer Settings> ENABLE Usb debugging"
@@ -441,6 +429,7 @@ echo " "
 echo " "
 startselect
 }
+
 #ADVANCED MENU**************************************************************************************************************************
 
 advanced () {
@@ -456,6 +445,7 @@ echo "1- Run Adb Shell"
 echo "2- Reboot into...."
 echo "3- UnBrick Your Phone (Use this ONLY if the phone doesn't boot up)"
 echo "4- Edit Partitions"
+echo "5- Test Usb"
 echo " "
 echo "x- Go Back"
 echo " "
@@ -476,12 +466,17 @@ elif [ "$Choice" = "4" ]
   then
     partitionsM
     break
+elif [ "$Choice" = "4" ]
+  then
+    breaktestmn
+    break
 elif [ "$Choice" = "x" ]
   then
     startselect
     break
 else
 echo "Wrong input"
+advanced
 fi
 } 
 
@@ -531,7 +526,7 @@ echo "...."
 sudo adb start-server
 sudo adb root
 sudo adb remount
-sudo adb shell
+sudo adb shell su
 }
 
 partitionsM () {
@@ -580,6 +575,7 @@ fi
 partition2 () {
 echo "I disclaim every damage caused using this!"
 echo "Thanks to @M1cha for this"
+adb reboot recovery
 read -p "Press Enter to continue...."
 read -p "ARE YOU SURE?"
 read -p "Press ENTER ONLY if you have the backup on your PC!!"
@@ -589,16 +585,15 @@ echo "Let's start"
 sudo adb push ~/ariesTool/Script/repartition.sh /tmp
 sudo adb shell chmod 0777 /tmp/repartition.sh
 sudo adb shell /tmp/repartition.sh
-echo "Please Wait Until it Works...."
-echo "Press ANY key ONLY IT SAID DONE!!!!!"
-echo "When it say Done, enable TDB and then Type: continue , I'll take you to Cyanogenmod Setup"
+echo "Done!"
+echo "Enable TDB and then Type: continue , I'll take you to Cyanogenmod Setup"
  read -p "?" Choice
 if [ "$Choice" = "continue" ]
   then
     cmi
     break
 else
-echo "Wrong input, type: continue"
+cmi
 fi
 }
 
@@ -611,6 +606,7 @@ echo " "
 echo " "
 echo "1- Backup"
 echo "2- Restore"
+read -p "?" Choice
 if [ "$Choice" = "2" ]
   then
     backup
