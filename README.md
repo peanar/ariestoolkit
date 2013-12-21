@@ -34,5 +34,5 @@ What Do you Need?
  
  #3-a Usb Cable
  
- #4-Xiaomi Mi2 / Mi2s (Mi2A DON'T WORK!!!)
+ #4-Xiaomi Mi2 / Mi2s (Mi2A DOESN'T WORK!!!)
  
