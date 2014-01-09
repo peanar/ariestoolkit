@@ -190,7 +190,7 @@ pause
 adb sideload C:\ariesTool\rom\cm.zip
 echo When the recovery will give some Options Like Reboot System Now, Install zip, press enter
 pause
-echo Enjoy your new Cyaogenmod 10.2 on your Mi2(s)
+echo Enjoy your new Cyaogenmod 10.2 stable on your Mi2(s)
 @adb reboot
 pause
 goto :start
@@ -312,6 +312,7 @@ echo Your phone will be rebooted on Fastboot mode
 fastboot devices
 echo if your device appears in the list, adb is working well, so you can use this toolkit
 echo if not, google about set up Fastboot
+@fastboot reboot
 pause
 goto :start
 
@@ -419,6 +420,14 @@ echo 1- Reboot System
 echo 2- Reboot Recovery
 echo 3- Reboot Bootloader
 echo.
+set /p S= PLEASE SELECT AN OPTION NOW :
+if %S%==1 adb reboot
+if %S%==2 adb reboot recovery
+if %S%==3 adb reboot bootloader
+echo.
+echo Invalid, try again...
+pause
+goto reboot
 
 
 :partitions
@@ -443,8 +452,7 @@ if %S%==1 goto:partitions2
 echo.
 echo Invalid, try again...
 pause
-goto
-partitions
+goto partitions
 
 
 :partitions2
